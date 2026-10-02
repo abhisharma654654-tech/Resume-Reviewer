@@ -36,8 +36,8 @@ function App() {
         formData.append('jobDescription', jobDescription);
       }
 
-      // In production, this would be an environment variable or relative path
-      const API_URL = 'http://localhost:3001/api/analyze';
+      // Use environment variable for production, fallback to localhost for dev
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/analyze';
       
       const response = await axios.post<AnalysisResponse>(API_URL, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
